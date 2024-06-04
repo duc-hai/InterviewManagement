@@ -1,8 +1,6 @@
 import { CreateUserRequest } from './../../Application/Features/User/Requests/CreateUserRequest';
 import { Request, Response, query } from 'express';
-import LoginHandler from "../../Application/Features/User/Handlers/LoginHandler";
 import { LoginRequest } from "../../Application/Features/User/Requests/LoginRequest";
-import { CreateUserHandler } from '../../Application/Features/User/Handlers/CreateUserHandler';
 import UserRepository from '../../Infrastructure/Persistences/Respositories/UserRepository';
 import UserService from '../../Application/Features/User/UserService';
 import IUserService from '../../Application/Persistences/IServices/IUserService';

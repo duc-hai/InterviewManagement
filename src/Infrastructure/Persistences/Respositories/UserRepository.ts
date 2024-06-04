@@ -1,4 +1,3 @@
-import { RoleWithBase } from './../../../Domain/Entities/RoleEntities';
 import { Collection, Db } from "mongodb";
 import BaseRepository from "./BaseRepository";
 import { User, UserWithBase } from "../../../Domain/Entities/UserEntites";

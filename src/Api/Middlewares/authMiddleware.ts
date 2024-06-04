@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 import {Request, Response, NextFunction} from 'express'
 import SessionRepository from "../../Infrastructure/Persistences/Respositories/SessionRepository";
 import mongoose from 'mongoose';
-import RoleRepository from '../../Infrastructure/Persistences/Respositories/RoleRepository';
 import { UnitOfWork } from '../../Infrastructure/Persistences/Respositories/UnitOfWork';
 const moment = require('moment-timezone');
 
@@ -51,33 +50,33 @@ async function authenticateToken(req: any, res: any, next: any){
     });
 }
 
-function authorizationMiddleware(requiredRoles: any) {
-    return (req: any, res: any, next: any) => {
-        const roleRepository = new RoleRepository();
-        const jwtuser = req.user;
-        console.log("requiredRoles",requiredRoles);
-        console.log("jwtuser ",jwtuser.roleId);
-        const queryData = {
-            isActive: true,
-            isDelete: false
-        }
-        roleRepository.getRoleById(jwtuser.roleId, queryData).then((userRole: any) => {
-            // Kiểm tra vai trò của người dùng
-        console.log("findById(jwtuser.roleId).then(userRole ",userRole);
+// function authorizationMiddleware(requiredRoles: any) {
+//     return (req: any, res: any, next: any) => {
+//         const roleRepository = new RoleRepository();
+//         const jwtuser = req.user;
+//         console.log("requiredRoles",requiredRoles);
+//         console.log("jwtuser ",jwtuser.roleId);
+//         const queryData = {
+//             isActive: true,
+//             isDelete: false
+//         }
+//         roleRepository.getRoleById(jwtuser.roleId, queryData).then((userRole: any) => {
+//             // Kiểm tra vai trò của người dùng
+//         console.log("findById(jwtuser.roleId).then(userRole ",userRole);
 
-            if (!userRole || !requiredRoles.includes(userRole.name)) {
-                return res.status(403).json({ message: "Không có quyền thực hiện hành động này" });
-            }
-            next();
-        }).catch((error: any) => {
-            console.error(error);
-            return res.status(500).json({ message: "Lỗi máy chủ" });
-        });
-    };
-}
+//             if (!userRole || !requiredRoles.includes(userRole.name)) {
+//                 return res.status(403).json({ message: "Không có quyền thực hiện hành động này" });
+//             }
+//             next();
+//         }).catch((error: any) => {
+//             console.error(error);
+//             return res.status(500).json({ message: "Lỗi máy chủ" });
+//         });
+//     };
+// }
 
 
 module.exports = {
     authenticateToken,
-    authorizationMiddleware,
+    //authorizationMiddleware,
 }
