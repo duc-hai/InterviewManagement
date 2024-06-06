@@ -1,3 +1,4 @@
+import InterviewRepository from '../../../Infrastructure/Persistences/Respositories/InterviewRepository';
 import RoleRepository from "../../../Infrastructure/Persistences/Respositories/RoleRepository";
 import SessionRepository from "../../../Infrastructure/Persistences/Respositories/SessionRepository";
 import UserRepository from "../../../Infrastructure/Persistences/Respositories/UserRepository";
@@ -7,4 +8,5 @@ export interface IUnitOfWork extends IBaseUnitOfWork{
     userRepository: UserRepository;
     sessionRepository: SessionRepository;
     roleRepository: RoleRepository;
+    interviewRepository: InterviewRepository;
 }
